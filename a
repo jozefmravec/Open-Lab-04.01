@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Quiz_Vlajky.MainPage">
+
+    <Grid RowSpacing="50" ColumnSpacing="20" BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="1/10"
+            TextColor="Black"
+            FontSize="Large"
+            Margin="130, 0, 0, 0"/>
+
+        <Label
+            Text="Slovakia"
+            Grid.Column="1"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+           
+            FontSize="Large"
+            TextColor="Black"/>
+        <Button Text="Bratislava" Grid.Row="2" Grid.Column="0" Margin="20, 10, 20, 10"/>
+        <Button Text="Budapešť" Grid.Row="2" Grid.Column="1" Margin="20, 10, 20, 10"/>
+        <Button Text="Minsk" Grid.Row="3" Grid.Column="0" Margin="20, 10, 20, 10"/>
+        <Button Text="Berlín" Grid.Row="3" Grid.Column="1" Margin="20, 10, 20, 10"/>
+    </Grid>
+</ContentPage>
+
+using System;
+
+using Android.App;
+using Android.Content.PM;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Android.OS;
+
+namespace QuizPlus.Droid
+{
+    [Activity(Label = "QuizPlus", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
+
+            base.OnCreate(savedInstanceState);
+
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            LoadApplication(new App());
+        }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+}
